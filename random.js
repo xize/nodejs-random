@@ -1,13 +1,12 @@
 var seedNR = 0.4709848078964569;
-var use = 1.2531;
+var use = 1;
 
 /**
  * randomizes a number based on the seed from the generator
  */
 Math.rand = function(from, to) {
-	//TODO: fix range to work properly.
-	if(use > to) {
-		use = 1.2531;
+	if(use > to && use < from) {
+		use = 1;
 	}
 	//TODO: figuring out why it says & 0xFF is unexpected since it just seem to work....
 	var gen2 = (seedNR * use) * 0xFF - ((to+from)*0xFF) & 0xFF;
@@ -28,5 +27,5 @@ Math.seed = function(s) {
  */
 Math.reset = function() {
 	//TODO: remove this function if the current generator works
-	use = 1.2531;
+	use = 1;
 };
