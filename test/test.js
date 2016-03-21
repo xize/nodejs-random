@@ -1,0 +1,31 @@
+require("../random.js");
+
+var seed1 = 1;
+var seed2 = 4012031;
+var seed3 = 10;
+var seed4 = 15;
+
+console.log("using seed1: ");
+Math.seed(seed1);
+console.log("the random number from this seed is: "+Math.rand(0, 10));
+console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
+console.log("using seed2: ");
+Math.seed(seed2);
+console.log("the random number from this seed is: "+Math.rand(0, 10));
+console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
+console.log("using seed3: ");
+Math.seed(seed3);
+console.log("the random number from this seed is: "+Math.rand(0, 10));
+console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
+console.log("using seed4: ");
+Math.seed(seed4);
+var seed4_gen1 = Math.rand(0,10);
+console.log("the random number from this seed is: "+seed4_gen1);
+console.log("a repeat of this random number is: "+Math.rand(0, 10));
+console.log("hard reseting generator with same seed and generate from start again!");
+Math.seed(seed4);
+Math.reset();
+var seed4_gen2 = Math.rand(0,10);
+console.log(seed4_gen1);
+console.log(seed4_gen2);
+console.log("are the first generated seeds the same?: "+(seed4_gen1===seed4_gen2 ? "absolutely" : "no they are not the same output, this means its not working as intended"));
