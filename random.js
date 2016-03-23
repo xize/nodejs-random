@@ -1,31 +1,36 @@
-var seedNR = 0.4709848078964569;
-var use = 1;
+var seedNR = 40000;
+var seed = 40000;
+var use = 0;
 
-/**
- * randomizes a number based on the seed from the generator
- */
-Math.rand = function(from, to) {
-	if(use > to && use < from) {
-		use = 1;
+Math.seed = function(seed) {
+	if(seed <= 0) {
+		seed =  Date.now();
 	}
-	//TODO: figuring out why it says & 0xFF is unexpected since it just seem to work....
-	var gen2 = (seedNR * use) * 0xFF - ((to+from)*0xFF) & 0xFF;
-	use++;
-	return gen2;
+	seedNR = seed;
+	seed = seed;
 };
 
-/**
- * initialize a seed for the random generator
- */
-Math.seed = function(s) {
-	s = Math.sin(s+1) * 1000;
-	seedNR = (parseFloat(s - Math.floor(s)));
+Math.nextInt = function() {
+	//this is xorshift.
+	seedNR ^= (seedNR << 21);
+	seedNR ^= (seedNR >>> 35);
+	seedNR ^= (seedNR << 4);
+	//returns the generated number, however use bitwise modifier to remove negative numbers then generate between 0 and 127
+	return (seedNR < 0 ? ~(seedNR) : seedNR) % (127+1-0)+0;
 };
 
-/**
- * @deprecated
- */
+Math.rand = function(min, max) {
+	if(min > max) {
+		return Math.rand(max, min);
+	}
+	if(min === max) {
+		return min;
+	}
+	var result = (Math.nextInt() % (max + 1 - min)) + min; 
+	return result;
+};
+
 Math.reset = function() {
-	//TODO: remove this function if the current generator works
-	use = 1;
+	//resets the seed.
+	Math.seed(seed);
 };
