@@ -55,4 +55,18 @@ function toByteArray(d) {
 	return bytes;
 }
 
+/*
+generates( seems to be non utf-8 though :( ):
+g[V%{&a)_
+:N oa2z%Y{j;&LILg]jCY}7y=({%wC} "}"q^LSVEDj%I<^q
+                                                                     [0^#P"j
+<ET;^.^4T.
+4vACd[DKgdFu^%20yX{X
+^_yFibvS.tKM"u
+}PE;{^2qiDX@z]%KVFqg;vY@%27"<{
+*VqU
+     D
+oTu7t(]j(<[%%([FinY[%vq72jE{&A
+                                     1UsC;oAoM"CD=g<%h
+ */
 console.log(salt("hello", 256));
