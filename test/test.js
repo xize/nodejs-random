@@ -1,31 +1,37 @@
 require("../random.js");
 
-var seed1 = 1;
-var seed2 = 4012031;
-var seed3 = 10;
-var seed4 = 15;
+var seed = 123;
 
-console.log("using seed1: ");
-Math.seed(seed1);
-console.log("the random number from this seed is: "+Math.rand(0, 10));
-console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
-console.log("using seed2: ");
-Math.seed(seed2);
-console.log("the random number from this seed is: "+Math.rand(0, 10));
-console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
-console.log("using seed3: ");
-Math.seed(seed3);
-console.log("the random number from this seed is: "+Math.rand(0, 10));
-console.log("a repeat of this random number is: "+Math.rand(0, 10)+"\r\n\n");
-console.log("using seed4: ");
-Math.seed(seed4);
-var seed4_gen1 = Math.rand(0,10);
-console.log("the random number from this seed is: "+seed4_gen1);
-console.log("a repeat of this random number is: "+Math.rand(0, 10));
-console.log("hard reseting generator with same seed and generate from start again!");
-Math.seed(seed4);
-Math.reset();
-var seed4_gen2 = Math.rand(0,10);
-console.log(seed4_gen1);
-console.log(seed4_gen2);
-console.log("are the first generated seeds the same?: "+(seed4_gen1===seed4_gen2 ? "absolutely" : "no they are not the same output, this means its not working as intended"));
+function printHelloWorld(d) {
+
+	var args = ["H","E","L","L","O"," ","W","O","R","L","D"];
+
+	Math.seed(d); //instancing the seed.
+
+	var name = '';
+
+	for(var index = 0; index < args.length; index++) {
+		var cindex = Math.rand(0, args.length-2);
+		//console.log("random index choosen: "+cindex+" size of array: "+args.length);
+		name += args[cindex];
+	}
+	return name;
+}
+
+//returns in " OLHEOOOOWL"
+for(var i = 0; i < 15; i++) {
+	console.log(printHelloWorld(123));
+}
+//returns in "WLWLEOE OWO"
+for(var i = 0; i < 15; i++) {
+	console.log(printHelloWorld(321));
+}
+
+//conclusion not fully safe yet because the seed is short
+
+//testing with longer seed...
+//result in LLOLLHELEEO, it seems to take the over hand of 2 4 6 8 10 12 etc... 64 can be divided by 2 aswell.
+console.log("longer seed: "+321+0.12345*1000);
+for(var i = 0; i < 15; i++) {
+	console.log(printHelloWorld(321+0.12345*1000));
+}
