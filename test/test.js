@@ -1,7 +1,5 @@
 require("../random.js");
 
-var seed = 123;
-
 function printHelloWorld(d) {
 
 	var args = ["H","E","L","L","O"," ","W","O","R","L","D"];
