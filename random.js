@@ -16,7 +16,7 @@ Math.nextInt = function() {
 	seedNR ^= (seedNR >>> 35);
 	seedNR ^= (seedNR << 4);
 	//returns the generated number, however use bitwise modifier to remove negative numbers then generate between 0 and 127
-	return (seedNR < 0 ? ~(seedNR) : seedNR) % (127+1-0)+0;
+	return (seedNR < 0 ? ~(seedNR) : seedNR) % (127+1-1)+1;
 };
 
 Math.rand = function(min, max) {
